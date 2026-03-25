@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Issue Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="bg-gray-900 text-white min-h-screen font-sans">
+
+    <section id="login-page" class="flex items-center justify-center min-h-screen">
+        <div class="bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-md border border-gray-700 text-center">
+            <img src="github-logo.png" alt="Logo" class="w-16 mx-auto mb-4">
+            <h2 class="text-2xl font-bold mb-2">Sign in to GitHub</h2>
+            <p class="text-gray-400 mb-6">Enter your credentials to manage issues</p>
+
+            <div class="space-y-4 text-left">
+                <div>
+                    <label class="block text-sm mb-1">Username</label>
+                    <input type="text" id="username" class="input input-bordered w-full bg-gray-700 border-gray-600 focus:border-blue-500" placeholder="admin">
+                </div>
+                <div>
+                    <label class="block text-sm mb-1">Password</label>
+                    <input type="password" id="password" class="input input-bordered w-full bg-gray-700 border-gray-600 focus:border-blue-500" placeholder="admin123">
+                </div>
+                <button onclick="handleLogin()" class="btn btn-primary w-full mt-4">Sign In</button>
+            </div>
+
+            <div class="mt-6 p-3 bg-gray-700 rounded text-xs text-gray-300">
+                <p>Demo Credentials: <strong>admin</strong> / <strong>admin123</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="main-page" class="hidden">
+        <nav class="bg-gray-800 border-b border-gray-700 p-4 flex flex-wrap justify-between items-center sticky top-0 z-50">
+            <div class="flex items-center gap-2">
+                <img src="github-logo.png" class="w-8" alt="Logo">
+                <span class="text-xl font-semibold tracking-tight">IssueTracker</span>
+            </div>
+            <div class="flex gap-2 mt-4 sm:mt-0 w-full sm:w-auto">
+                <input type="text" id="searchInput" placeholder="Search issues..." class="input input-bordered input-sm w-full bg-gray-900 border-gray-700">
+                <button onclick="searchIssues()" class="btn btn-sm btn-outline">Search</button>
+            </div>
+        </nav>
+
+        <main class="container mx-auto p-4 md:p-8">
+            <div class="bg-gray-800 border border-gray-700 rounded-t-lg p-4">
+                <div class="flex gap-4 border-b border-gray-700 pb-4 mb-4">
+                    <button onclick="filterIssues('all')" class="tab-btn active text-blue-400 font-bold">All</button>
+                    <button onclick="filterIssues('open')" class="tab-btn hover:text-blue-400">Open</button>
+                    <button onclick="filterIssues('closed')" class="tab-btn hover:text-blue-400">Closed</button>
+                </div>
+                
+                <div class="flex justify-between items-center text-sm text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <img src="Aperture.png" class="w-4" alt="icon">
+                        <span id="issueCount">0 Issues</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="flex items-center gap-1"><img src="Open-Status.png" class="w-4"> Open</span>
+                        <span class="flex items-center gap-1"><img src="Closed- Status .png" class="w-4"> Closed</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="issuesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                </div>
+        </main>
+    </section>
+
+    <dialog id="issue_modal" class="modal">
+        <div class="modal-box bg-gray-800 border border-gray-700 text-white">
+            <h3 id="modalTitle" class="font-bold text-lg text-blue-400"></h3>
+            <div id="modalContent" class="py-4 space-y-2 text-sm">
+                </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn btn-sm">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+</html>
