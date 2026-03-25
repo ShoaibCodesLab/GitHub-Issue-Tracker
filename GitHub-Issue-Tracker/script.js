@@ -1,4 +1,4 @@
-// --- DUMMY DATA ---
+
 const issuesData = [
     { id: 1, title: "Auth system bug", desc: "User cannot login with valid credentials.", status: "open", author: "Shahidul", priority: "High", label: "Bug", createdAt: "2024-03-20" },
     { id: 2, title: "UI Layout issue", desc: "Sidebar overlapping on mobile screens.", status: "closed", author: "Rahat", priority: "Medium", label: "UI", createdAt: "2024-03-18" },
@@ -8,7 +8,6 @@ const issuesData = [
 
 let currentFilter = 'all';
 
-// --- LOGIN LOGIC ---
 function handleLogin() {
     const user = document.getElementById('username').value;
     const pass = document.getElementById('password').value;
@@ -22,11 +21,11 @@ function handleLogin() {
     }
 }
 
-// --- RENDER FUNCTION (The Core) ---
+
 function renderIssues(data) {
     const grid = document.getElementById('issuesGrid');
     const countText = document.getElementById('issueCount');
-    grid.innerHTML = ''; // Clear old data
+    grid.innerHTML = ''; 
 
     countText.innerText = `${data.length} Issues Found`;
 
@@ -56,11 +55,10 @@ function renderIssues(data) {
     });
 }
 
-// --- FILTERING ---
+
 function filterIssues(status) {
     currentFilter = status;
     
-    // UI Update for Tabs
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('text-blue-400', 'font-bold');
         if(btn.innerText.toLowerCase() === status) {
@@ -76,7 +74,7 @@ function filterIssues(status) {
     }
 }
 
-// --- SEARCH ---
+
 function searchIssues() {
     const query = document.getElementById('searchInput').value.toLowerCase();
     const searched = issuesData.filter(i => 
@@ -86,7 +84,7 @@ function searchIssues() {
     renderIssues(searched);
 }
 
-// --- MODAL ---
+
 function showModal(issue) {
     const modal = document.getElementById('issue_modal');
     const title = document.getElementById('modalTitle');
